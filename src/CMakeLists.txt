@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-find_package (Threads REQUIRED)
-
-project(async VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(async_cli VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 file(GLOB_RECURSE SOURCES *.cpp *.h)
 
@@ -14,7 +12,9 @@ set_target_properties(
         CXX_STANDARD_REQUIRED ON
 )
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR})
+
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} async)
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
