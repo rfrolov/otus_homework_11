@@ -20,6 +20,6 @@ ThreadPool::Statistic print_file(std::time_t time, size_t rnd, const std::vector
     for (const auto &command : command_pool) {
         fs << command << (&command != &command_pool.back() ? ", " : "");
     }
-    fs << std::endl;
+    fs.close();
     return ThreadPool::Statistic{1, command_pool.size()};
 }

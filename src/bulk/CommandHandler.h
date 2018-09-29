@@ -15,15 +15,15 @@ struct CommandHandler {
         size_t command_num; ///< Количество команд.
 
         Statistic &operator+=(const Statistic &other) {
-            string_num  += other.string_num;
-            bulk_num    += other.bulk_num;
+            string_num += other.string_num;
+            bulk_num += other.bulk_num;
             command_num += other.command_num;
             return *this;
         }
 
         bool operator==(const Statistic &other) {
-            return string_num  == other.string_num &&
-                   bulk_num    == other.bulk_num &&
+            return string_num == other.string_num &&
+                   bulk_num == other.bulk_num &&
                    command_num == other.command_num;
         }
     };
@@ -82,11 +82,14 @@ struct CommandHandler {
     }
 
     /// Выводит оставшиеся команды и выдает статистику.
-    const auto& finish() {
+    const auto &finish() {
         print_pool();
         return m_statistic;
     }
 
+    ~CommandHandler() {
+        finish();
+    }
 private:
     void print_pool() {
         if (m_command_pool.empty() || m_braces_num) {
@@ -105,7 +108,7 @@ private:
 private:
     size_t                    m_block_size{};
     size_t                    m_braces_num{};
-    command_pull_t                m_command_pool{};
+    command_pull_t            m_command_pool{};
     std::vector<fn_printer_t> m_printers{};
     std::time_t               m_first_command_time{};
     Statistic                 m_statistic{};

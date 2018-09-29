@@ -1,7 +1,7 @@
 #include <fstream>
 
 #include "gtest/gtest.h"
-#include "print.h"
+#include "bulk/print.h"
 
 TEST(print, log) {
     std::stringstream is{};

@@ -1,6 +1,6 @@
 #include <chrono>
 #include "gtest/gtest.h"
-#include "CommandHandler.h"
+#include "bulk/CommandHandler.h"
 
 TEST(CommandHandler, attach) {
     CommandHandler cmd{1};
