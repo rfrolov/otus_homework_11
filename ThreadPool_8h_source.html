@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>otus_homework_11: Исходный файл src/bulk/ThreadPool.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">otus_homework_11
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Указатель</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Классы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Пространства имен</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Файлы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Функции</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Переменные</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Определения типов</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6e22baae89fb4f62b43e7345b371b522.html">bulk</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ThreadPool.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ThreadPool_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;condition_variable&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structThreadPool.html">    9</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structThreadPool.html">ThreadPool</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structThreadPool_1_1Statistic.html">   12</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structThreadPool_1_1Statistic.html">Statistic</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">   13</a></span>&#160;        <span class="keywordtype">size_t</span> <a class="code" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">bulk_num</a>;        </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">   14</a></span>&#160;        <span class="keywordtype">size_t</span> <a class="code" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">command_num</a>;     </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structThreadPool_1_1Statistic.html#aabba4e3e5c8ed730a52af8d004bc1af0">   16</a></span>&#160;        <a class="code" href="structThreadPool_1_1Statistic.html">Statistic</a> &amp;<a class="code" href="structThreadPool_1_1Statistic.html#aabba4e3e5c8ed730a52af8d004bc1af0">operator+=</a>(<span class="keyword">const</span> <a class="code" href="structThreadPool_1_1Statistic.html">Statistic</a> &amp;other) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">bulk_num</a> += other.<a class="code" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">bulk_num</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">command_num</a> += other.<a class="code" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">command_num</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structThreadPool_1_1Statistic.html#a17e397ada65d8f6b56b6426d6dd7f128">   22</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structThreadPool_1_1Statistic.html#a17e397ada65d8f6b56b6426d6dd7f128">operator==</a>(<span class="keyword">const</span> <a class="code" href="structThreadPool_1_1Statistic.html">Statistic</a> &amp;other) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">bulk_num</a> == other.<a class="code" href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">bulk_num</a> &amp;&amp; <a class="code" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">command_num</a> == other.<a class="code" href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">command_num</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structThreadPool.html#a78284a7aa0e3f6177ad3f21311314c2c">   27</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="structThreadPool.html#a78284a7aa0e3f6177ad3f21311314c2c">func_t</a> = std::function&lt;Statistic()&gt;;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structThreadPool.html#a13539bd7d742a9207c04e77ba7c93244">   33</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="structThreadPool.html#a13539bd7d742a9207c04e77ba7c93244">ThreadPool</a>(<span class="keywordtype">size_t</span> threads_num) : m_max_queue_size{threads_num * 3} {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        m_statistics.resize(threads_num);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        m_workers.reserve(threads_num);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; threads_num; ++i)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            m_workers.emplace_back(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    [<span class="keyword">this</span>, i] {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        for (;;) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                            <a class="code" href="structThreadPool.html#a78284a7aa0e3f6177ad3f21311314c2c">func_t</a> task;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                            {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                std::unique_lock&lt;std::mutex&gt; lock(m_queue_mutex);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                m_condition.wait(lock, [<span class="keyword">this</span>] { <span class="keywordflow">return</span> m_stop || !m_task_queue.empty(); });</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                <span class="keywordflow">if</span> (m_stop &amp;&amp; m_task_queue.empty()) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                task = std::move(m_task_queue.front());</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                m_task_queue.pop();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                            }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                            <span class="keyword">auto</span>   statistic = task();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                            {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                std::unique_lock&lt;std::mutex&gt; lock(m_statistic_mutex);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                m_statistics[i] += statistic;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                            }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structThreadPool.html#a8a1d8ed7b1eaa86ef0cdd8f709c95d17">   63</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structThreadPool.html#a8a1d8ed7b1eaa86ef0cdd8f709c95d17">enqueue</a>(F &amp;&amp;f, Args &amp;&amp;... args) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                std::unique_lock&lt;std::mutex&gt; lock(m_queue_mutex);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordflow">if</span> (m_stop) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;enqueue on stopped ThreadPool&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">if</span> (m_task_queue.size() &lt; m_max_queue_size) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    m_task_queue.emplace(std::bind(std::forward&lt;F&gt;(f), std::forward&lt;Args&gt;(args)...));</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                std::this_thread::yield();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        m_condition.notify_one();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structThreadPool.html#a3d76162b719741b271e6dfdb6987797a">   87</a></span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code" href="structThreadPool.html#a3d76162b719741b271e6dfdb6987797a">finish</a>() {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            std::unique_lock&lt;std::mutex&gt; lock(m_queue_mutex);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            m_stop = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        m_condition.notify_all();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">for</span> (std::thread &amp;worker: m_workers) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">if</span> (worker.joinable()) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                worker.join();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">// Все потоки остановлены, поэтому мьютекс здесь не нужен.</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> m_statistics;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structThreadPool.html#a44d3d2ab618970605e684efc216655eb">  104</a></span>&#160;    <a class="code" href="structThreadPool.html#a44d3d2ab618970605e684efc216655eb">~ThreadPool</a>() {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        finish();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    std::vector&lt;std::thread&gt; m_workers{};</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    std::mutex              m_queue_mutex{};</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    std::condition_variable m_condition{};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    std::queue&lt;func_t&gt;      m_task_queue{};</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">bool</span>                    m_stop{};</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    std::mutex             m_statistic_mutex{};</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::vector&lt;Statistic&gt; m_statistics{};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">size_t</span> m_max_queue_size;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
+<div class="ttc" id="structThreadPool_1_1Statistic_html"><div class="ttname"><a href="structThreadPool_1_1Statistic.html">ThreadPool::Statistic</a></div><div class="ttdoc">Структура статистики. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:12</div></div>
+<div class="ttc" id="structThreadPool_1_1Statistic_html_a6cf4c7addd5c60209e674b98cf7d5a23"><div class="ttname"><a href="structThreadPool_1_1Statistic.html#a6cf4c7addd5c60209e674b98cf7d5a23">ThreadPool::Statistic::bulk_num</a></div><div class="ttdeci">size_t bulk_num</div><div class="ttdoc">Количество блоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:13</div></div>
+<div class="ttc" id="structThreadPool_html"><div class="ttname"><a href="structThreadPool.html">ThreadPool</a></div><div class="ttdoc">Класс пула потоков. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:9</div></div>
+<div class="ttc" id="structThreadPool_html_a8a1d8ed7b1eaa86ef0cdd8f709c95d17"><div class="ttname"><a href="structThreadPool.html#a8a1d8ed7b1eaa86ef0cdd8f709c95d17">ThreadPool::enqueue</a></div><div class="ttdeci">void enqueue(F &amp;&amp;f, Args &amp;&amp;...args)</div><div class="ttdoc">Добавляет задачу в очередь. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:63</div></div>
+<div class="ttc" id="structThreadPool_html_a44d3d2ab618970605e684efc216655eb"><div class="ttname"><a href="structThreadPool.html#a44d3d2ab618970605e684efc216655eb">ThreadPool::~ThreadPool</a></div><div class="ttdeci">~ThreadPool()</div><div class="ttdoc">Деструктор. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:104</div></div>
+<div class="ttc" id="structThreadPool_1_1Statistic_html_a17e397ada65d8f6b56b6426d6dd7f128"><div class="ttname"><a href="structThreadPool_1_1Statistic.html#a17e397ada65d8f6b56b6426d6dd7f128">ThreadPool::Statistic::operator==</a></div><div class="ttdeci">bool operator==(const Statistic &amp;other)</div><div class="ttdef"><b>Definition:</b> ThreadPool.h:22</div></div>
+<div class="ttc" id="structThreadPool_1_1Statistic_html_a54f4ba30b3ca85ff67ee2702330585a6"><div class="ttname"><a href="structThreadPool_1_1Statistic.html#a54f4ba30b3ca85ff67ee2702330585a6">ThreadPool::Statistic::command_num</a></div><div class="ttdeci">size_t command_num</div><div class="ttdoc">Количество команд. </div><div class="ttdef"><b>Definition:</b> ThreadPool.h:14</div></div>
+<div class="ttc" id="structThreadPool_html_a78284a7aa0e3f6177ad3f21311314c2c"><div class="ttname"><a href="structThreadPool.html#a78284a7aa0e3f6177ad3f21311314c2c">ThreadPool::func_t</a></div><div class="ttdeci">std::function&lt; Statistic()&gt; func_t</div><div class="ttdef"><b>Definition:</b> ThreadPool.h:27</div></div>
+<div class="ttc" id="structThreadPool_html_a3d76162b719741b271e6dfdb6987797a"><div class="ttname"><a href="structThreadPool.html#a3d76162b719741b271e6dfdb6987797a">ThreadPool::finish</a></div><div class="ttdeci">const auto &amp; finish()</div><div class="ttdef"><b>Definition:</b> ThreadPool.h:87</div></div>
+<div class="ttc" id="structThreadPool_html_a13539bd7d742a9207c04e77ba7c93244"><div class="ttname"><a href="structThreadPool.html#a13539bd7d742a9207c04e77ba7c93244">ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool(size_t threads_num)</div><div class="ttdef"><b>Definition:</b> ThreadPool.h:33</div></div>
+<div class="ttc" id="structThreadPool_1_1Statistic_html_aabba4e3e5c8ed730a52af8d004bc1af0"><div class="ttname"><a href="structThreadPool_1_1Statistic.html#aabba4e3e5c8ed730a52af8d004bc1af0">ThreadPool::Statistic::operator+=</a></div><div class="ttdeci">Statistic &amp; operator+=(const Statistic &amp;other)</div><div class="ttdef"><b>Definition:</b> ThreadPool.h:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>
