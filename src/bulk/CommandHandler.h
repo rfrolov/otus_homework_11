@@ -87,6 +87,7 @@ struct CommandHandler {
         return m_statistic;
     }
 
+    /// Деструктор.
     ~CommandHandler() {
         finish();
     }
