@@ -103,7 +103,9 @@ public:
         command_handler.del_printer(context->print_log_id);
         command_handler.del_printer(context->print_file_id);
 
+#ifndef NDEBUG
         std::cout << "handle (" << context << "): " << cmd_statistic << std::endl;
+#endif //#ifndef NDEBUG
 
         delete *it;
         m_handlers.erase(it);
@@ -123,9 +125,11 @@ private:
 
         auto pool_statistic = m_thread_pool.finish();
 
+#ifndef NDEBUG
         for (const auto &statistic: pool_statistic) {
             std::cout << "поток(" << (&statistic - &pool_statistic[0] + 1) << "), " << statistic << std::endl;
         }
+#endif //#ifndef NDEBUG
     }
 
     std::mutex             m_mutex{};
